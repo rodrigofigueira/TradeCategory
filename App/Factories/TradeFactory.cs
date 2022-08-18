@@ -8,7 +8,7 @@ namespace App
         public static ITrade Create(double Value, string clientSector, DateTime nextPaymentDate, DateTime referenceDate)
         {
             if ((referenceDate - nextPaymentDate).Days > 30)
-                return new TradeExpired();
+                return new TradeExpired(clientSector);
 
             if (Value > 1000000 && "PRIVATE".Contains(clientSector.ToUpper()))
                 return new TradeHighRisk();
